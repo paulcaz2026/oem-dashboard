@@ -1699,7 +1699,7 @@ html, body, [class*="css"], .stApp, button, input, textarea, select {
     color: var(--valtech-black) !important;
 }
 .block-container {
-    padding-top: 0.75rem !important;
+    padding-top: 1.75rem !important;
     max-width: 1480px !important;
 }
 .valtech-topbar {
@@ -1707,24 +1707,28 @@ html, body, [class*="css"], .stApp, button, input, textarea, select {
     align-items:center;
     justify-content:space-between;
     gap:16px;
-    padding: 8px 0 10px 0;
-    margin-bottom: 10px;
+    padding: 12px 0 12px 0;
+    margin: 8px 0 10px 0;
     border-bottom: 1px solid var(--valtech-line);
     background: var(--valtech-white);
+    overflow: visible;
 }
 .valtech-wordmark {
     color: var(--valtech-black);
-    font-size: 34px;
-    line-height: 1;
+    font-size: 30px;
+    line-height: 1.25;
     font-weight: 400;
     letter-spacing: -0.055em;
+    display:flex;
+    align-items:center;
+    overflow: visible;
 }
 .valtech-star {
     display:inline-block;
     margin-left:6px;
-    font-size:30px;
+    font-size:28px;
     line-height:1;
-    transform: translateY(2px);
+    transform: translateY(1px);
 }
 .valtech-nav {
     display:none;
@@ -1796,6 +1800,14 @@ html, body, [class*="css"], .stApp, button, input, textarea, select {
     border-top: 1px solid var(--valtech-line);
     font-size: 11px !important;
 }
+
+@media (max-width: 800px) {
+    .block-container { padding-top: 1.25rem !important; }
+    .valtech-topbar { padding: 10px 0 10px 0; margin-top: 6px; }
+    .valtech-wordmark { font-size: 26px; line-height: 1.25; }
+    .valtech-star { font-size: 24px; }
+}
+
 .section-kicker {
     color: var(--valtech-black) !important;
     font-size: 16px !important;
