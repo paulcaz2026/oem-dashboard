@@ -37,20 +37,20 @@ def image_file_to_data_uri(path):
 # =========================
 
 st.set_page_config(
-    page_title="Generic OEM Competitor Version",
+    page_title="OEM Macro Conversion Intelligence Report",
     page_icon="🚗",
     layout="wide",
 )
 
 DATA_FILE = Path(__file__).parent / "OEM Visit to Sales Data 2024-2026.xlsx"
 
-VALTECH_BLUE = "#009FE3"
+VALTECH_BLUE = "#003CB3"
 VALTECH_GREY = "#6F6F6F"
 VALTECH_LIGHT_GREY = "#F3F3F3"
 BLACK = "#000000"
 WHITE = "#FFFFFF"
 GREEN = "#12C76B"
-PINK = "#FF5C8A"
+PINK = "#FF4B55"
 AMBER = "#FFB000"
 INTELLIGENCE = "#2563EB"
 
@@ -1678,6 +1678,329 @@ img[src^="data:image/png"][alt="Toyota logo"] {
     .report-builder-grid, .report-type-grid { grid-template-columns: 1fr; }
 }
 
+
+
+/* Valtech brand parity override */
+:root {
+    --valtech-black: #000000;
+    --valtech-white: #ffffff;
+    --valtech-offwhite: #F6F5F1;
+    --valtech-blue: #003CB3;
+    --valtech-red: #FF4B55;
+    --valtech-grey: #6F6F6F;
+    --valtech-line: #D9D7D1;
+}
+html, body, [class*="css"], .stApp, button, input, textarea, select {
+    font-family: "Valtech", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    letter-spacing: -0.015em;
+}
+.stApp {
+    background: var(--valtech-white) !important;
+    color: var(--valtech-black) !important;
+}
+.block-container {
+    padding-top: 1.25rem !important;
+    max-width: 1480px !important;
+}
+.valtech-topbar {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding: 24px 0 28px 0;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--valtech-line);
+    background: var(--valtech-white);
+}
+.valtech-wordmark {
+    color: var(--valtech-black);
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.055em;
+}
+.valtech-star {
+    display:inline-block;
+    margin-left:8px;
+    font-size:44px;
+    line-height:1;
+    transform: translateY(2px);
+}
+.valtech-nav {
+    display:flex;
+    align-items:center;
+    gap:72px;
+    color: var(--valtech-black);
+    font-size:24px;
+    font-weight:700;
+}
+.valtech-nav span {
+    position:relative;
+    padding-top: 10px;
+}
+.valtech-nav span.active::before {
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+    width:24px;
+    height:6px;
+    background: var(--valtech-red);
+}
+.hero {
+    background: var(--valtech-white) !important;
+    color: var(--valtech-black) !important;
+    border-radius: 0 !important;
+    border: 1px solid var(--valtech-line) !important;
+    border-bottom: 10px solid var(--valtech-blue) !important;
+    padding: 52px 56px 58px 56px !important;
+    margin: 0 0 34px 0 !important;
+    box-shadow: none !important;
+}
+.hero::after { display:none !important; }
+.hero-accent-red {
+    width: 28px;
+    height: 7px;
+    background: var(--valtech-red);
+    margin-bottom: 28px;
+}
+.hero-kicker {
+    color: var(--valtech-grey);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+.hero-title {
+    color: var(--valtech-black) !important;
+    font-size: clamp(56px, 7vw, 104px) !important;
+    line-height: .96 !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.075em !important;
+    max-width: 1280px !important;
+}
+.hero-subtitle {
+    color: var(--valtech-black) !important;
+    max-width: 980px !important;
+    font-size: 24px !important;
+    line-height: 1.35 !important;
+    margin-top: 32px !important;
+    font-weight: 400 !important;
+}
+.hero-meta {
+    color: var(--valtech-grey) !important;
+    margin-top: 30px !important;
+    padding-top: 18px;
+    border-top: 1px solid var(--valtech-line);
+    font-size: 15px !important;
+}
+.section-kicker {
+    color: var(--valtech-black) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: .02em !important;
+    text-transform: none !important;
+    margin: 42px 0 22px !important;
+}
+.section-kicker::after {
+    background: var(--valtech-black) !important;
+    opacity: .25;
+}
+.card,
+.method-card,
+.methodology-card,
+.usecase-card,
+.flow-usecase-card,
+.report-builder-card,
+.report-output-card,
+.assistant-card,
+.share-card,
+.exec-kpi-card,
+.exec-market-card,
+.score-podium-card,
+.bubble-controls-card,
+.bubble-filter-panel,
+.bubble-side-card,
+.brand-insight-card,
+.mm5-kpi-card,
+.takeaway-card,
+.tl-detail-card {
+    border: 1px solid var(--valtech-black) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: var(--valtech-white) !important;
+}
+.start-intro,
+.usecase-note,
+.usecase-toggle-note,
+.bubble-key,
+.bubble-control-note,
+.footer-note,
+.lock-note {
+    background: var(--valtech-offwhite) !important;
+    border: 1px solid var(--valtech-black) !important;
+    border-left: 8px solid var(--valtech-blue) !important;
+    border-radius: 0 !important;
+    color: var(--valtech-black) !important;
+    box-shadow: none !important;
+}
+.methodology-callout,
+.da-context-chip,
+.assistant-card-tag,
+.tag,
+.oem-pill,
+.cluster-chip,
+.source-logo-pill {
+    background: var(--valtech-white) !important;
+    color: var(--valtech-black) !important;
+    border: 1px solid var(--valtech-black) !important;
+    border-radius: 0 !important;
+}
+.insight-card,
+.assistant-card.primary,
+.takeaway-card,
+.brand-market-card,
+.brand-insight-card {
+    border-left: 8px solid var(--valtech-blue) !important;
+}
+.insight-card.risk,
+.assistant-card.risk,
+.takeaway-card.risk {
+    border-left-color: var(--valtech-red) !important;
+}
+.insight-card.opportunity,
+.assistant-card.positive,
+.takeaway-card.positive {
+    border-left-color: var(--valtech-blue) !important;
+}
+.report-type-card,
+.tl-detail-metric,
+.start-factor-card,
+.exec-kpi-card.primary,
+.mm5-kpi-card.primary {
+    background: var(--valtech-offwhite) !important;
+    border-radius: 0 !important;
+}
+.start-factor-card {
+    border: 1px solid var(--valtech-black) !important;
+    border-left: 8px solid var(--valtech-blue) !important;
+}
+.benchmark-title,
+.insight-title,
+.method-title,
+.methodology-card h4,
+.usecase-title,
+.flow-title,
+.report-builder-title,
+.assistant-card-title,
+.share-title,
+.takeaway-title,
+.exec-market-title,
+.score-podium-title,
+.brand-insight-title,
+.da-simple-title,
+.bubble-side-title,
+.bubble-filter-title,
+.brand-market-title {
+    color: var(--valtech-black) !important;
+    font-weight: 700 !important;
+}
+.benchmark-copy,
+.insight-copy,
+.method-copy,
+.usecase-copy,
+.flow-copy,
+.report-builder-copy,
+.assistant-card-copy,
+.takeaway-copy,
+.brand-market-meta,
+.brand-insight-meta,
+.market-summary-note,
+.da-simple-copy {
+    color: var(--valtech-grey) !important;
+}
+.benchmark-metric,
+.insight-metric,
+.assistant-card-metric,
+.exec-kpi-value,
+.mm5-kpi-value,
+.brand-insight-main,
+.brand-market-value,
+.tl-detail-value {
+    color: var(--valtech-black) !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.055em !important;
+}
+div[data-testid="stPlotlyChart"] {
+    border: 1px solid var(--valtech-black) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 12px !important;
+}
+.html-table-wrap {
+    border: 1px solid var(--valtech-black) !important;
+    border-radius: 0 !important;
+}
+.html-table th {
+    background: var(--valtech-offwhite) !important;
+    color: var(--valtech-black) !important;
+    border-bottom: 1px solid var(--valtech-black) !important;
+}
+.html-table td {
+    color: var(--valtech-black) !important;
+    border-bottom: 1px solid var(--valtech-line) !important;
+}
+section[data-testid="stSidebar"] {
+    background: var(--valtech-black) !important;
+    border-right: 8px solid var(--valtech-blue) !important;
+}
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] span {
+    color: var(--valtech-white) !important;
+}
+section[data-testid="stSidebar"] [data-baseweb="radio"] label,
+section[data-testid="stSidebar"] [data-baseweb="checkbox"] label {
+    color: var(--valtech-white) !important;
+}
+.stButton > button,
+div[data-testid="stDownloadButton"] button {
+    background: var(--valtech-black) !important;
+    color: var(--valtech-white) !important;
+    border: 1px solid var(--valtech-black) !important;
+    border-radius: 0 !important;
+    font-weight: 700 !important;
+}
+.stButton > button:hover,
+div[data-testid="stDownloadButton"] button:hover {
+    background: var(--valtech-blue) !important;
+    color: var(--valtech-white) !important;
+    border-color: var(--valtech-blue) !important;
+}
+span[data-baseweb="tag"] {
+    background-color: var(--valtech-white) !important;
+    color: var(--valtech-black) !important;
+    border: 1px solid var(--valtech-black) !important;
+    border-radius: 0 !important;
+}
+[data-baseweb="select"] > div,
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input {
+    border-radius: 0 !important;
+    border-color: var(--valtech-black) !important;
+}
+@media (max-width: 900px) {
+    .valtech-topbar { align-items:flex-start; flex-direction:column; }
+    .valtech-nav { gap: 24px; font-size: 18px; flex-wrap:wrap; }
+    .hero { padding: 36px 26px 42px 26px !important; }
+    .hero-title { font-size: 54px !important; }
+    .hero-subtitle { font-size: 19px !important; }
+}
 </style>
 """,
     unsafe_allow_html=True,
@@ -2014,9 +2337,18 @@ def render_cluster_legend(selected_clusters):
 def render_hero():
     st.markdown(
         f"""
+        <div class="valtech-topbar">
+            <div class="valtech-wordmark">Valtech <span class="valtech-star">✳</span></div>
+            <div class="valtech-nav">
+                <span class="active">Intelligence</span>
+                <span>Markets</span>
+                <span>Scorecard</span>
+            </div>
+        </div>
         <div class="hero">
-            <div class="hero-logo"><img src="{VALTECH_LOGO}" alt="Valtech logo"></div>
-            <div class="hero-title">Generic OEM Competitor Version</div>
+            <div class="hero-accent-red"></div>
+            <div class="hero-kicker">OEM intelligence</div>
+            <div class="hero-title">OEM Macro Conversion Intelligence Report</div>
             <div class="hero-subtitle">
                 Website-to-contract conversion intelligence across MM5. Explore how unique visitor demand converts into passenger car sales, compare OEMs consistently by market, and identify cross-market performance opportunities.
             </div>
@@ -3279,7 +3611,7 @@ def render_start_here_page(data):
 
     intro_html = (
         "<div class='start-intro'>"
-        "<b>This is the Generic OEM Competitor Version.</b><br><br>"
+        "<b>This is the OEM Macro Conversion Intelligence Report.</b><br><br>"
         "Use this dashboard to compare how OEM website demand converts into passenger car sales across the five included markets. "
         "The core metric is <b>Website-to-Contract Conversion Rate</b>: passenger car sales divided by monthly deduplicated unique website visitors.<br><br>"
         "The dashboard should be read as a macro commercial-efficiency tool. It helps identify where an OEM may be winning through demand quality, product-market fit, offer strength, retailer execution, stock availability, or conversion journey performance."
