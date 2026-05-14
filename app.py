@@ -1699,35 +1699,35 @@ html, body, [class*="css"], .stApp, button, input, textarea, select {
     color: var(--valtech-black) !important;
 }
 .block-container {
-    padding-top: 1.25rem !important;
+    padding-top: 0.75rem !important;
     max-width: 1480px !important;
 }
 .valtech-topbar {
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:24px;
-    padding: 24px 0 28px 0;
-    margin-bottom: 18px;
+    gap:16px;
+    padding: 8px 0 10px 0;
+    margin-bottom: 10px;
     border-bottom: 1px solid var(--valtech-line);
     background: var(--valtech-white);
 }
 .valtech-wordmark {
     color: var(--valtech-black);
-    font-size: 48px;
+    font-size: 34px;
     line-height: 1;
     font-weight: 400;
     letter-spacing: -0.055em;
 }
 .valtech-star {
     display:inline-block;
-    margin-left:8px;
-    font-size:44px;
+    margin-left:6px;
+    font-size:30px;
     line-height:1;
     transform: translateY(2px);
 }
 .valtech-nav {
-    display:flex;
+    display:none;
     align-items:center;
     gap:72px;
     color: var(--valtech-black);
@@ -1753,48 +1753,48 @@ html, body, [class*="css"], .stApp, button, input, textarea, select {
     color: var(--valtech-black) !important;
     border-radius: 0 !important;
     border: 1px solid var(--valtech-line) !important;
-    border-bottom: 10px solid var(--valtech-blue) !important;
-    padding: 52px 56px 58px 56px !important;
-    margin: 0 0 34px 0 !important;
+    border-bottom: 6px solid var(--valtech-blue) !important;
+    padding: 22px 28px 24px 28px !important;
+    margin: 0 0 22px 0 !important;
     box-shadow: none !important;
 }
 .hero::after { display:none !important; }
 .hero-accent-red {
-    width: 28px;
-    height: 7px;
+    width: 24px;
+    height: 5px;
     background: var(--valtech-red);
-    margin-bottom: 28px;
+    margin-bottom: 12px;
 }
 .hero-kicker {
     color: var(--valtech-grey);
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 800;
     letter-spacing: .22em;
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
 }
 .hero-title {
     color: var(--valtech-black) !important;
-    font-size: clamp(56px, 7vw, 104px) !important;
-    line-height: .96 !important;
+    font-size: clamp(28px, 3.8vw, 54px) !important;
+    line-height: 1.02 !important;
     font-weight: 400 !important;
-    letter-spacing: -0.075em !important;
-    max-width: 1280px !important;
+    letter-spacing: -0.065em !important;
+    max-width: 900px !important;
 }
 .hero-subtitle {
     color: var(--valtech-black) !important;
     max-width: 980px !important;
-    font-size: 24px !important;
+    font-size: 14px !important;
     line-height: 1.35 !important;
-    margin-top: 32px !important;
+    margin-top: 14px !important;
     font-weight: 400 !important;
 }
 .hero-meta {
     color: var(--valtech-grey) !important;
-    margin-top: 30px !important;
-    padding-top: 18px;
+    margin-top: 14px !important;
+    padding-top: 10px;
     border-top: 1px solid var(--valtech-line);
-    font-size: 15px !important;
+    font-size: 11px !important;
 }
 .section-kicker {
     color: var(--valtech-black) !important;
@@ -1995,11 +1995,14 @@ div[data-testid="stNumberInput"] input {
     border-color: var(--valtech-black) !important;
 }
 @media (max-width: 900px) {
-    .valtech-topbar { align-items:flex-start; flex-direction:column; }
-    .valtech-nav { gap: 24px; font-size: 18px; flex-wrap:wrap; }
-    .hero { padding: 36px 26px 42px 26px !important; }
-    .hero-title { font-size: 54px !important; }
-    .hero-subtitle { font-size: 19px !important; }
+    .valtech-topbar { align-items:flex-start; flex-direction:column; padding: 6px 0 8px 0; margin-bottom: 8px; }
+    .valtech-wordmark { font-size: 28px !important; }
+    .valtech-star { font-size: 25px !important; }
+    .valtech-nav { display:none !important; }
+    .hero { padding: 16px 18px 18px 18px !important; margin-bottom: 16px !important; }
+    .hero-title { font-size: 32px !important; letter-spacing: -0.055em !important; }
+    .hero-subtitle { font-size: 13px !important; margin-top: 10px !important; }
+    .hero-meta { font-size: 10px !important; }
 }
 </style>
 """,
@@ -2339,11 +2342,6 @@ def render_hero():
         f"""
         <div class="valtech-topbar">
             <div class="valtech-wordmark">Valtech <span class="valtech-star">✳</span></div>
-            <div class="valtech-nav">
-                <span class="active">Intelligence</span>
-                <span>Markets</span>
-                <span>Scorecard</span>
-            </div>
         </div>
         <div class="hero">
             <div class="hero-accent-red"></div>
@@ -3455,6 +3453,207 @@ def selected_oem_market_insight_rows(data, brand):
     return pd.DataFrame(rows)
 
 
+
+
+def ppt_valtech_header(slide, section_label="OEM INTELLIGENCE"):
+    """Add simple Valtech-style branded header/footer elements to a slide."""
+    # top wordmark
+    tx = slide.shapes.add_textbox(Inches(0.45), Inches(0.22), Inches(3.2), Inches(0.35))
+    p = tx.text_frame.paragraphs[0]
+    p.text = "Valtech ✳"
+    p.font.size = Pt(20)
+    p.font.bold = False
+    p.font.color.rgb = RGBColor(0, 0, 0)
+
+    # red active mark
+    mark = slide.shapes.add_shape(1, Inches(0.45), Inches(0.78), Inches(0.28), Inches(0.055))
+    mark.fill.solid()
+    mark.fill.fore_color.rgb = RGBColor(255, 75, 85)
+    mark.line.color.rgb = RGBColor(255, 75, 85)
+
+    lab = slide.shapes.add_textbox(Inches(0.45), Inches(0.95), Inches(4.0), Inches(0.25))
+    lp = lab.text_frame.paragraphs[0]
+    lp.text = section_label
+    lp.font.size = Pt(8)
+    lp.font.bold = True
+    lp.font.color.rgb = RGBColor(111, 111, 111)
+
+    # bottom blue rule
+    bar = slide.shapes.add_shape(1, Inches(0), Inches(7.36), Inches(13.333), Inches(0.14))
+    bar.fill.solid()
+    bar.fill.fore_color.rgb = RGBColor(0, 60, 179)
+    bar.line.color.rgb = RGBColor(0, 60, 179)
+
+
+def ppt_add_textbox(slide, x, y, w, h, text, size=16, bold=False, color=(0, 0, 0)):
+    box = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
+    tf = box.text_frame
+    tf.word_wrap = True
+    tf.clear()
+    p = tf.paragraphs[0]
+    p.text = ppt_safe_text(text)
+    p.font.size = Pt(size)
+    p.font.bold = bold
+    p.font.color.rgb = RGBColor(*color)
+    return box
+
+
+def ppt_add_valtech_card(slide, x, y, w, h, title, value, body=None, accent="blue"):
+    box = slide.shapes.add_shape(1, Inches(x), Inches(y), Inches(w), Inches(h))
+    box.fill.solid()
+    box.fill.fore_color.rgb = RGBColor(255, 255, 255)
+    box.line.color.rgb = RGBColor(0, 0, 0)
+    # accent line
+    accent_rgb = RGBColor(0, 60, 179) if accent == "blue" else RGBColor(255, 75, 85)
+    line = slide.shapes.add_shape(1, Inches(x), Inches(y), Inches(0.07), Inches(h))
+    line.fill.solid()
+    line.fill.fore_color.rgb = accent_rgb
+    line.line.color.rgb = accent_rgb
+    tf = box.text_frame
+    tf.clear()
+    p1 = tf.paragraphs[0]
+    p1.text = ppt_safe_text(title)
+    p1.font.size = Pt(9)
+    p1.font.bold = True
+    p1.font.color.rgb = RGBColor(111, 111, 111)
+    p2 = tf.add_paragraph()
+    p2.text = ppt_safe_text(value)
+    p2.font.size = Pt(22)
+    p2.font.bold = False
+    p2.font.color.rgb = RGBColor(0, 0, 0)
+    if body:
+        p3 = tf.add_paragraph()
+        p3.text = ppt_safe_text(body)
+        p3.font.size = Pt(9)
+        p3.font.color.rgb = RGBColor(111, 111, 111)
+
+
+def create_oem_insight_storyteller_ppt(data, selected_brand, rows):
+    if Presentation is None:
+        raise RuntimeError("python-pptx is not installed. Add python-pptx to requirements.txt and redeploy.")
+    if rows.empty:
+        raise RuntimeError("No insight rows available to export.")
+
+    best = rows.sort_values("W2C", ascending=False).iloc[0]
+    weakest = rows.sort_values("W2C", ascending=True).iloc[0]
+    momentum = rows.sort_values("W2C Var", ascending=False).iloc[0]
+    pressure = rows.sort_values("Rank", ascending=False).iloc[0]
+    avg_w2c = rows["W2C"].mean()
+    total_sales = rows["Sales"].sum()
+    total_visitors = rows["Visitors"].sum()
+
+    prs = Presentation()
+    prs.slide_width = Inches(13.333)
+    prs.slide_height = Inches(7.5)
+    blank = prs.slide_layouts[6]
+
+    # Slide 1 — title
+    slide = prs.slides.add_slide(blank)
+    ppt_valtech_header(slide)
+    ppt_add_textbox(slide, 0.72, 1.55, 11.4, 1.8, f"{selected_brand} Macro Conversion Storyteller Report", size=38, bold=False)
+    ppt_add_textbox(
+        slide, 0.76, 3.35, 10.8, 0.75,
+        f"Website-to-contract conversion intelligence across UK, France, Germany, Italy and Spain. {CURRENT_LABEL} vs {PREVIOUS_LABEL}.",
+        size=17, bold=False
+    )
+    rule = slide.shapes.add_shape(1, Inches(0.76), Inches(4.35), Inches(11.8), Inches(0.01))
+    rule.fill.solid(); rule.fill.fore_color.rgb = RGBColor(217, 215, 209); rule.line.color.rgb = RGBColor(217, 215, 209)
+    ppt_add_textbox(slide, 0.76, 4.55, 10.8, 0.4, "Sources: Marklines passenger car sales and Similarweb unique visitors", size=10, color=(111,111,111))
+
+    # Slide 2 — executive takeaway
+    slide = prs.slides.add_slide(blank)
+    ppt_valtech_header(slide)
+    ppt_add_textbox(slide, 0.72, 1.35, 11.8, 0.55, "Executive takeaway", size=30, bold=False)
+    takeaway = (
+        f"{selected_brand} is strongest in {best['Market']} at {best['W2C']:.2f}% W2C and weakest in {weakest['Market']} at {weakest['W2C']:.2f}% W2C. "
+        f"The core commercial question is why conversion efficiency changes so materially across markets, especially where the brand has visitor scale but weaker relative ranking."
+    )
+    ppt_add_textbox(slide, 0.76, 2.05, 11.6, 0.85, takeaway, size=16, color=(0,0,0))
+    ppt_add_valtech_card(slide, 0.76, 3.25, 2.25, 1.25, "Average W2C", f"{avg_w2c:.2f}%", "Five-market average")
+    ppt_add_valtech_card(slide, 3.25, 3.25, 2.25, 1.25, "Sales", fmt_metric_number(total_sales), CURRENT_LABEL)
+    ppt_add_valtech_card(slide, 5.74, 3.25, 2.25, 1.25, "Visitors", fmt_metric_number(total_visitors), CURRENT_LABEL)
+    ppt_add_valtech_card(slide, 8.23, 3.25, 2.25, 1.25, "Strongest", str(best["Market"]), f"{best['W2C']:.2f}% W2C")
+    ppt_add_valtech_card(slide, 10.72, 3.25, 2.25, 1.25, "Weakest", str(weakest["Market"]), f"{weakest['W2C']:.2f}% W2C", accent="red")
+
+    # Slide 3 — five-market performance
+    slide = prs.slides.add_slide(blank)
+    ppt_valtech_header(slide)
+    ppt_add_textbox(slide, 0.72, 1.25, 11.8, 0.55, "Five-market performance", size=30, bold=False)
+    table_df = pd.DataFrame({
+        "Market": rows["Market"],
+        "W2C": rows["W2C"].map(lambda x: f"{x:.2f}%"),
+        "Rank": rows.apply(lambda r: f"#{int(r['Rank'])} of {int(r['Peer Count'])}", axis=1),
+        "Sales": rows["Sales"].map(fmt_metric_number),
+        "Visitors": rows["Visitors"].map(fmt_metric_number),
+        "Market gap": rows["Gap to Market Avg"].map(fmt_pp),
+        "W2C movement": rows["W2C Var"].map(fmt_pp),
+    })
+    ppt_add_table(slide, table_df, 0.72, 2.1, 11.9, 2.3, font_size=9)
+    ppt_add_textbox(slide, 0.76, 4.8, 11.4, 0.6, f"Rank scale is relative to the full OEM peer set in each market. Use this slide to separate absolute conversion strength from local competitive pressure.", size=14, color=(111,111,111))
+
+    # Slide 4 — insight cards
+    slide = prs.slides.add_slide(blank)
+    ppt_valtech_header(slide)
+    ppt_add_textbox(slide, 0.72, 1.25, 11.8, 0.55, "Storyteller insight cards", size=30, bold=False)
+    market_gap = rows.sort_values("Gap to Market Avg").iloc[0]
+    scale = rows.sort_values("Visitors", ascending=False).iloc[0]
+    cards = [
+        ("Strongest market", best["Market"], f"{best['W2C']:.2f}% W2C", "blue"),
+        ("Weakest market", weakest["Market"], f"{weakest['W2C']:.2f}% W2C", "red"),
+        ("Conversion gap", market_gap["Market"], fmt_pp(market_gap["Gap to Market Avg"]), "red"),
+        ("Scale opportunity", scale["Market"], fmt_metric_number(scale["Visitors"]), "blue"),
+        ("Competitive pressure", pressure["Market"], f"#{int(pressure['Rank'])} of {int(pressure['Peer Count'])}", "red"),
+        ("Momentum", momentum["Market"], fmt_pp(momentum["W2C Var"]), "blue" if momentum["W2C Var"] >= 0 else "red"),
+    ]
+    xs = [0.76, 4.62, 8.48, 0.76, 4.62, 8.48]
+    ys = [2.05, 2.05, 2.05, 4.05, 4.05, 4.05]
+    for (title, market, value, accent), x, y in zip(cards, xs, ys):
+        ppt_add_valtech_card(slide, x, y, 3.25, 1.35, title, value, market, accent=accent)
+
+    # Slide 5 — action narrative
+    slide = prs.slides.add_slide(blank)
+    ppt_valtech_header(slide)
+    ppt_add_textbox(slide, 0.72, 1.25, 11.8, 0.55, "Recommended diagnostic narrative", size=30, bold=False)
+    bullets = [
+        f"Use {best['Market']} as the reference market for strongest conversion behaviour and investigate what is transferable.",
+        f"Prioritise {weakest['Market']} for conversion journey, offer, stock, retailer hand-off and demand-quality diagnosis.",
+        f"Review {pressure['Market']} for competitive pressure because the selected OEM has the weakest relative rank there.",
+        "Separate visitor scale from conversion quality: a high-audience market is not automatically a high-efficiency market.",
+        "Treat W2C as a macro commercial-efficiency signal, not proof of website UX causality on its own.",
+    ]
+    box = slide.shapes.add_textbox(Inches(0.9), Inches(2.1), Inches(11.5), Inches(4.4))
+    tf = box.text_frame; tf.clear()
+    for i, b in enumerate(bullets):
+        para = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        para.text = f"• {ppt_safe_text(b)}"
+        para.font.size = Pt(18)
+        para.font.color.rgb = RGBColor(0, 0, 0)
+        para.space_after = Pt(10)
+
+    # Slide 6 — methodology
+    slide = prs.slides.add_slide(blank)
+    ppt_valtech_header(slide)
+    ppt_add_textbox(slide, 0.72, 1.25, 11.8, 0.55, "Methodology and caveats", size=30, bold=False)
+    notes = [
+        "Website-to-Contract Conversion Rate = passenger car sales / monthly deduplicated unique website visitors.",
+        "Passenger car sales source: Marklines. Unique visitor source: Similarweb.",
+        "The metric is designed for competitor intelligence and commercial diagnosis, not direct attribution.",
+        "Use the report to identify where deeper investigation is needed across product, pricing, stock, retailer execution, media quality and website journey.",
+    ]
+    box = slide.shapes.add_textbox(Inches(0.9), Inches(2.1), Inches(11.5), Inches(4.4))
+    tf = box.text_frame; tf.clear()
+    for i, n in enumerate(notes):
+        para = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+        para.text = f"• {ppt_safe_text(n)}"
+        para.font.size = Pt(17)
+        para.font.color.rgb = RGBColor(0, 0, 0)
+        para.space_after = Pt(10)
+
+    bio = BytesIO()
+    prs.save(bio)
+    bio.seek(0)
+    return bio.getvalue()
+
 def render_oem_insight_report_page(data):
     section("Insight Report")
     st.markdown(
@@ -3480,6 +3679,19 @@ def render_oem_insight_report_page(data):
     if rows.empty:
         st.warning("No insight data is available for the selected OEM and time period.")
         return
+
+    try:
+        ppt_bytes = create_oem_insight_storyteller_ppt(data, selected_brand, rows)
+        st.download_button(
+            "Download Storyteller PPT",
+            data=ppt_bytes,
+            file_name=f"{selected_brand.lower().replace(' ', '_')}_macro_conversion_storyteller_report.pptx",
+            mime="application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            use_container_width=True,
+            key="download_oem_storyteller_ppt",
+        )
+    except Exception as exc:
+        st.warning(f"PowerPoint export is unavailable: {exc}")
 
     best = rows.sort_values("W2C", ascending=False).iloc[0]
     weakest = rows.sort_values("W2C", ascending=True).iloc[0]
@@ -3540,7 +3752,8 @@ def render_oem_insight_report_page(data):
     with c2:
         fig = go.Figure(go.Bar(x=rows["Market"], y=rows["Rank"], text=rows["Rank"].map(lambda x: f"#{int(x)}"), textposition="outside", marker_color=VALTECH_GREY))
         fig.update_layout(title="Market ranking view", yaxis_title="Rank within market", xaxis_title="Market", height=430, plot_bgcolor=WHITE, paper_bgcolor=WHITE)
-        fig.update_yaxes(autorange="reversed", dtick=1, gridcolor="#EDF1F5")
+        max_rank_tick = int(math.ceil(rows["Rank"].max() / 5) * 5)
+        fig.update_yaxes(autorange=False, range=[max_rank_tick, 0], dtick=5, tick0=0, gridcolor="#EDF1F5")
         st.plotly_chart(fig, use_container_width=True)
 
     c3, c4 = st.columns(2)
